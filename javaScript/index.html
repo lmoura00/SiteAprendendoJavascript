@@ -51,6 +51,13 @@
         <input type="button" id="splice" onclick="spliceRemover" value="Function SPLICE para Remover"/>
         <input type="button" id="spliceAdd" onclick="spliceAdicionar" value="Function SPLICE para Adicionar"/>
         <input type="button" id="toString" onclick="tostring" value="Function toString"/>
+        <input type="button" id="filter" onclick="filter" value="Function FILTER"/>
+        <input type="button" id="charAt" onclick="charAt" value="Function CharAt"/>
+        <input type="button" id="localeCompare" onclick="compare" value="Function localeCompare"/>
+        <input type="button" id="replace" onclick="replace" value="Function Replace"/>
+
+
+
     </div>
 
     <p id="result"></p>
@@ -146,6 +153,37 @@
 
         }
 
+        function filter(){
+            var desejado = prompt("O que deseja procurar?")
+            var procurado = extras.filter(desejado)
+            result.innerHTML=  "<p> Item procurado: "+procurado
+            sobre.innerHTML = "O método filter() cria um novo array com todos os elementos que passaram no teste implementado pela função fornecida."
+        }
+
+        function charAt(){
+            var frase = promt("Qual a frase?")
+            var posicao = prompt("Qual a posição que deseja visualizar?")
+            result.innerHTML=  "<p> Letra: "+frase.charAt(posicao)
+            sobre.innerHTML = "O método charAt() retorna o caractere especificado a partir de uma string."
+        }
+        
+        function compare(){
+            var frase1 = prompt("Digite a primeira frase:")
+            var frase2 = prompt("Digite a segunda frase: ")
+            var compare = frase1.localeCompare(frase2)
+            result.innerHTML=  "<p>"+compare+"</p>"
+            sobre.innerHTML = "O método localeCompare() retorna um número que indica se uma string de referência vem antes ou depois, ou é a mesma que a string fornecida na ordem de classificação."
+        }
+        
+        function replace(){
+            var frase = prompt("Frase: ")
+            var parteParaSerSubs = prompt("Digite o trecho que deseja substituir: ")
+            var parteParaSubst = prompt("Digite pelo que deseja substituir: ")
+            var novaFrase = frase.replace(parteParaSerSubs,parteParaSubst)
+            result.innerHTML=  "<p> Frase Inicial: "+ frase +"</p><p> Nova Frase: "+novaFrase+"</p>"
+            sobre.innerHTML = "O método replace() retorna uma nova string com algumas ou todas as correspondências de um padrão substituídas por um determinado caractere (ou caracteres). O padrão pode ser uma string ou uma RegExp, e a substituição pode ser uma string ou uma função a ser chamada para cada correspondência. Se o padrão for uma string, apenas a primeira ocorrência será substituída."
+        }
+
 
         var bt = document.getElementById("verArrays")
         bt.addEventListener("click", ver)
@@ -179,6 +217,18 @@
         
         var bt9 = document.getElementById("toString")
         bt9.addEventListener("click", tostring)
+
+        var bt10 = document.getElementById("filter")
+        bt10.addEventListener("click", filter)
+        
+        var bt11 = document.getElementById("toString")
+        bt11.addEventListener("click", charAt)
+
+        var bt12 = document.getElementById("localeCompare")
+        bt12.addEventListener("click", compare)
+
+        var bt13 = document.getElementById("replace")
+        bt13.addEventListener("click", replace)
 
 </script>
 </body>
