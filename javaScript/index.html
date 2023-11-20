@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p{
+            font-size: 20px;
+        }
+        input{
+            width: 200px;
+            height: 50px;
+            border: 1px black solid;
+            border-radius: 10px;
+            
+        }
+        #sobre{
+            background-color: red;
+            width: 300px;
+            height: 250px;
+            border: 1px black solid;
+            border-radius: 10px;
+            padding: 10px;
+            display: block;
+            position: absolute;
+            left:  1400px;
+            top: 50;
+        }
+        div{
+            background-color: gray;
+            width: 70%;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 10px;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>TESTE DE JAVASCRIPT</h1>
+    <div>
+        <input type="button" id="verArrays" onclick="ver" value="Ver Arrays"/>
+        <input type="button" id="buttonn" onclick="ola" value="Function Olá"/>
+        <input type="button" id="btb" onclick="concat" value="Function Concat"/>
+        <input type="button" id="pop" onclick="pop" value="Function POP"/>
+        <input type="button" id="push" onclick="push" value="Function PUSH"/>
+        <input type="button" id="shift" onclick="shift" value="Function SHIFT"/>
+        <input type="button" id="unshift" onclick="unshift" value="Function UNSHIFT"/>
+        <input type="button" id="slice" onclick="slice" value="Function SLICE"/>
+        <input type="button" id="splice" onclick="spliceRemover" value="Function SPLICE para Remover"/>
+        <input type="button" id="spliceAdd" onclick="spliceAdicionar" value="Function SPLICE para Adicionar"/>
+        <input type="button" id="toString" onclick="tostring" value="Function toString"/>
+    </div>
+
+    <p id="result"></p>
+    <p id="sobre"></p>
+    <script >
+        var nomes = ['a', 'b', 'c']
+        var extras = [1,2,3,4,5,6,7,8,9,10]
+        var result = document.getElementById("result")
+        var sobre = document.getElementById("sobre")
+        function ola(){
+            var nome = prompt("Nome?")
+            //alert("Olá,"+ nome+ " seja bem vindo a esse html")
+            result.innerHTML = "<p>Olá, "+nome+", seja bem vindo a esse html!</p>"
+            sobre.innerHTML = "<p>olá</p>"
+        }
+        function ver(){
+            result.innerHTML =   "<p> Array Nomes: "+nomes+"</p>"+"<p>Array extras: "+extras+"</p>"
+        }
+        function concat(){
+            var final = nomes.concat(extras)
+            result.innerHTML =   "<p> Array Nomes: "+nomes+"</p>"+"<p>Array extras: "+extras+"</p>"+"<p>Array Final: "+final+"</p>"
+            sobre.innerHTML = "O método concat() é utilizado para mesclar dois ou mais arrays. Esse método não altera os arrays existentes, mas, em vez disso, retorna um novo array."
+        }
+        function pop(){
+            if(extras.length == 0){
+                alert("Nada a ser removido")
+                result.innerHTML= "<p>Nada a ser removido</p>"
+            }
+            else{
+                console.log(extras)
+                var novo = extras.pop()
+                console.log(novo)
+               result.innerHTML = "<p> Removido: "+novo+"</p><p> Array atual: "+extras+"</>"
+                sobre.innerHTML = "O método pop() remove o último elemento de um array e retorna aquele elemento."
+            }
+        }
+        function push(){
+            var novo = prompt("Novo item a ser adicionado: ")
+            extras[extras.length] = novo
+
+            result.innerHTML= "<p>O item "+novo+" foi adicionado com sucesso. </p><p>Array atualizado: "+extras+"</p>"
+            sobre.innerHTML = "O método push() adiciona um ou mais elementos ao final de um array e retorna o novo comprimento desse array."
+        }
+        function shift(){
+            var tamanho = extras.length
+            var velho = extras
+            for(var i = 0; i<tamanho;i++){
+                extras[i] = extras[i+1]
+                delete extras[i+1]
+            }
+            tamanho--
+            result.innerHTML = "<p> Array antigo: "+velho+"</p><p> Array atual: "+extras+"</>"
+            sobre.innerHTML = "O método shift() remove o primeiro elemento de um array e retorna esse elemento. Este método muda o tamanho do array."
+        }
+        function unshift(){
+            var add = prompt("Elemento a ser adicionado: ")
+            var tamanho = extras.length
+            for(var i = tamanho;i>0;i--){
+                extras[i] = extras[i-1]
+            }
+            extras[0] = add
+            result.innerHTML= "<p>"+extras+"</p>"
+            sobre.innerHTML = "O método unshift() adiciona um ou mais elementos no início de um array e retorna o número de elementos (propriedade length) atualizado."
+        }
+        function slice(){
+            var a = prompt("Digite o primeiro parametro: ")
+            var b = prompt("Digite o segundo parametro:")
+            var sub = extras.slice(a, b)
+            result.innerHTML=  "<p> Array original: "+sub+"</p>"+"<p> Array produto: "+sub+"</p>"
+            sobre.innerHTML = "O método slice() retorna uma cópia de parte de um array a partir de um subarray criado entre as posições início e fim (fim não é incluído) de um array original. O Array original não é modificado."
+        }
+        function spliceRemover(){
+            var valor = prompt("A partir de que index deseja excluir?")
+            var atual = extras.splice(valor)
+            result.innerHTML=  "<p> Array original: "+extras+"</p>"+"<p> Array produto: "+atual+"</p>"
+            extras = atual
+            sobre.innerHTML = "O método splice() altera o conteúdo de uma lista, adicionando novos elementos enquanto remove elementos antigos."
+        }
+        function spliceAdicionar(){
+            var a = prompt("Digite o primeiro parametro: ")
+            var b = prompt("Digite o segundo parametro: ")
+            var add = prompt("Digite o que deseja adicionar:")
+            extras.splice(a,b, add)
+            result.innerHTML=  "<p> Array: "+extras
+
+            sobre.innerHTML = "O método splice() altera o conteúdo de uma lista, adicionando novos elementos enquanto remove elementos antigos."
+
+        }
+
+        function tostring(){
+            result.innerHTML=  "<p> Array: "+extras.toString()
+            sobre.innerHTML = "O método toString() retorna uma string representando um array específico e seus elementos."
+
+        }
+
+
+        var bt = document.getElementById("verArrays")
+        bt.addEventListener("click", ver)
+        
+        var bt0 = document.getElementById("buttonn")
+        bt0.addEventListener("click", ola)
+
+        var bt1 = document.getElementById("btb")
+        bt1.addEventListener("click", concat)
+        
+        var bt2 = document.getElementById("pop")
+        bt2.addEventListener("click", pop)
+        
+        var bt3 = document.getElementById("push")
+        bt3.addEventListener("click", push)
+        
+        var bt4 = document.getElementById("shift")
+        bt4.addEventListener("click", shift)
+        
+        var bt5 = document.getElementById("unshift")
+        bt5.addEventListener("click", unshift)
+
+        var bt6 = document.getElementById("slice")
+        bt6.addEventListener("click", slice)
+
+        var bt7 = document.getElementById("splice")
+        bt7.addEventListener("click", spliceRemover)
+
+        var bt8 = document.getElementById("spliceAdd")
+        bt8.addEventListener("click", spliceAdicionar)
+        
+        var bt9 = document.getElementById("toString")
+        bt9.addEventListener("click", tostring)
+
+</script>
+</body>
+</html>
